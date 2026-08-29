@@ -1,5 +1,6 @@
 const menuBtn = document.getElementById("menuBtn");
 const nav = document.getElementById("nav");
+const header = document.querySelector(".header");
 const year = document.getElementById("year");
 const progress = document.getElementById("scrollProgress");
 
@@ -61,6 +62,41 @@ function updateProgress() {
 
 window.addEventListener("scroll", updateProgress, { passive: true });
 updateProgress();
+
+/* Hide navigation while scrolling down and reveal it while scrolling up */
+let lastScrollY = Math.max(window.scrollY, 0);
+let headerScrollTicking = false;
+
+function updateHeaderVisibility() {
+  if (!header) return;
+
+  const currentScrollY = Math.max(window.scrollY, 0);
+  const isScrollingDown = currentScrollY > lastScrollY;
+  const isMobileMenuOpen = nav?.classList.contains("open");
+
+  if (currentScrollY <= 80 || !isScrollingDown || isMobileMenuOpen) {
+    header.classList.remove("header-hidden");
+  } else if (currentScrollY > 140) {
+    header.classList.add("header-hidden");
+  }
+
+  lastScrollY = currentScrollY;
+  headerScrollTicking = false;
+}
+
+window.addEventListener(
+  "scroll",
+  () => {
+    if (headerScrollTicking) return;
+    headerScrollTicking = true;
+    window.requestAnimationFrame(updateHeaderVisibility);
+  },
+  { passive: true }
+);
+
+header?.addEventListener("focusin", () => {
+  header.classList.remove("header-hidden");
+});
 
 /* Active navigation link per visible section */
 const sections = document.querySelectorAll("main section[id]");
