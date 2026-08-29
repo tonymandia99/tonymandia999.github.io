@@ -86,3 +86,25 @@ const sectionObserver = new IntersectionObserver(
 );
 
 sections.forEach((section) => sectionObserver.observe(section));
+
+/* Open a pre-filled email from the contact form */
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+
+    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+    );
+
+    window.location.href =
+      `mailto:tonymandia99@gmail.com?subject=${subject}&body=${body}`;
+  });
+}
