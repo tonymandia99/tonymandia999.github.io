@@ -191,16 +191,9 @@ button, a {
   min-height: calc(100vh - 96px);
   padding: 58px 0 48px;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1.02fr .98fr;
   align-items: center;
-  gap: 8px;
-  text-align: center;
-}
-
-.hero-copy {
-  width: min(100%, 900px);
-  margin-inline: auto;
-  order: 2;
+  gap: 34px;
 }
 
 .eyebrow {
@@ -246,18 +239,17 @@ button, a {
 
 .hero-description {
   max-width: 650px;
-  margin: 19px auto 0;
+  margin-top: 19px;
   color: var(--muted);
   font-size: 18px;
   line-height: 1.65;
 }
 
 .hero-stats {
-  width: min(100%, 880px);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  margin: 30px auto 0;
+  margin-top: 30px;
 }
 
 .stat {
@@ -287,7 +279,6 @@ button, a {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 26px;
-  justify-content: center;
 }
 
 .btn {
@@ -322,12 +313,9 @@ button, a {
 /* HERO ART */
 .hero-art {
   position: relative;
-  width: min(100%, 780px);
-  min-height: 540px;
-  margin-inline: auto;
+  min-height: 590px;
   display: grid;
   place-items: center;
-  order: 1;
 }
 
 .tech-orbit {
